@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Mobile</string>
+
+
+    <string name="intent_scheme">company</string>
+    <string name="intent_host">www.company.com</string>
+
+    <!-- 型如 company://www.company.com/testpath1?name=1chengwei&age=135-->
+    <string name="intent_path1">/testpath1</string>
+
+    <!-- 型如 company://www.company.com/testpath1/path2?name=2chengwei&age=235-->
+    <string name="intent_path2">/testpath1/path2</string>
+
+    <!-- 型如 company://www.company.com/3/testpath3?name=3chengwei&age=335-->
+    <string name="intent_path3">/3/testpath3</string>
+</resources>

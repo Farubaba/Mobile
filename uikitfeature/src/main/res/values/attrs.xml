@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <declare-styleable name="LinearProgressBar">
+        <attr name="progress_reached_color" format="color"></attr>
+        <attr name="progress_reached_height" format="dimension"></attr>
+        <attr name="progress_unreach_color" format="color"></attr>
+        <attr name="progress_unreach_height" format="dimension"></attr>
+        <attr name="progress_text_color" format="color"></attr>
+        <attr name="progress_text_size" format="dimension"></attr>
+        <attr name="progress_text_offset" format="dimension"></attr>
+        <attr name="show_progress_text" format="boolean"></attr>
+        <attr name="round_progress_line" format="boolean"></attr>
+    </declare-styleable>
+</resources>
