@@ -7,7 +7,7 @@ import android.text.TextUtils;
  * @date 2018/4/25 18:13
  */
 
-public class CommonUtil {
+public class ConvenientUtil {
 
     public static boolean isEmpty(String target){
         if(TextUtils.isEmpty(target) || TextUtils.isEmpty(target.trim())){

@@ -1,6 +1,10 @@
 package com.silence.rootfeature.app;
 
+import android.app.Activity;
 import android.app.Application;
+import android.os.Bundle;
+
+import com.silence.rootfeature.logger.LogManager;
 
 /**
  * 自定义Application类，处理以下任务：<br>
@@ -17,10 +21,49 @@ import android.app.Application;
 public class MobileApplication extends Application {
     public static final String TAG = MobileApplication.class.getSimpleName();
 
+    private ActivityLifecycleCallbacks mCallbacks = new ActivityLifecycleCallbacks() {
+
+        @Override
+        public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+            LogManager.getInstance().d(TAG, "onActivityCreated() called with: activity = [" + activity + "], savedInstanceState = [" + savedInstanceState + "]");
+        }
+
+        @Override
+        public void onActivityStarted(Activity activity) {
+            LogManager.getInstance().d(TAG, "onActivityStarted() called with: activity = [" + activity + "]");
+        }
+
+        @Override
+        public void onActivityResumed(Activity activity) {
+            LogManager.getInstance().d(TAG, "onActivityResumed() called with: activity = [" + activity + "]");
+        }
+
+        @Override
+        public void onActivityPaused(Activity activity) {
+            LogManager.getInstance().d(TAG, "onActivityPaused() called with: activity = [" + activity + "]");
+        }
+
+        @Override
+        public void onActivityStopped(Activity activity) {
+            LogManager.getInstance().d(TAG, "onActivityStopped() called with: activity = [" + activity + "]");
+        }
+
+        @Override
+        public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
+            LogManager.getInstance().d(TAG, "onActivitySaveInstanceState() called with: activity = [" + activity + "], outState = [" + outState + "]");
+        }
+
+        @Override
+        public void onActivityDestroyed(Activity activity) {
+            LogManager.getInstance().d(TAG, "onActivityDestroyed() called with: activity = [" + activity + "]");
+        }
+    };
+
     @Override
     public void onCreate() {
         super.onCreate();
         MultiProcessInitializer.initProcesses(this);
+        registerActivityLifecycleCallbacks(mCallbacks);
     }
 
     /**

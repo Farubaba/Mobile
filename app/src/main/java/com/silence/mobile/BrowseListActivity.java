@@ -5,23 +5,15 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ListAdapter;
-import android.widget.SimpleAdapter;
 
 import com.silence.rootfeature.app.AppUtil;
 import com.silence.rootfeature.app.C;
 import com.silence.rootfeature.base.BaseListActivity;
 import com.silence.rootfeature.base.interf.ActivityDelegator;
 import com.silence.rootfeature.base.interf.DefaultActivityDelegator;
-import com.silence.rootfeature.utils.CommonUtil;
+import com.silence.rootfeature.utils.ConvenientUtil;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author violet
@@ -64,7 +56,7 @@ public class BrowseListActivity extends BaseListActivity {
 
 
 
-        if(CommonUtil.isEmpty(pathPrefix)){
+        if(ConvenientUtil.isEmpty(pathPrefix)){
             if(acitivtys == null || acitivtys.size() == 0){
                // setListAdapter(baseAdapter);
             }else{

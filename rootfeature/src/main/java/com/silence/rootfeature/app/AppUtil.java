@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
@@ -28,7 +29,7 @@ import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 
 import com.silence.rootfeature.logger.LogManager;
-import com.silence.rootfeature.utils.CommonUtil;
+import com.silence.rootfeature.utils.ConvenientUtil;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
@@ -560,7 +561,7 @@ public final class AppUtil {
             scheme = intent.getScheme();
             Uri uri = intent.getData();
             if(uri != null){
-                if(CommonUtil.isEmpty(scheme)){
+                if(ConvenientUtil.isEmpty(scheme)){
                     scheme = uri.getScheme();
                 }
                 intent.putExtra(C.UriInfo.KEY_SCHEME,scheme);
@@ -621,5 +622,30 @@ public final class AppUtil {
         }
         return intent;
     }
+
+    /**
+     * TODO Return 是否是横屏
+     * */
+    public static Boolean isLandscape(Context c) {
+        if (c.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 跳转到浏览器
+     */
+    public static void goBrowser(Context context, String url) {
+        try {
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            context.startActivity(i);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
 }

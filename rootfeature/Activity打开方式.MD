@@ -21,3 +21,23 @@
 1. 所有抽象都易扩展、易删除
 1. MVP
 1. RxJava
+
+PermissionRequest
+
+RxPermission
+
+PermissionDispather
+
+PermissionHelper
+
+EasyPermission
+
+
+
+[M23Permission]
+
+[M23Permission]:(https://www.cnblogs.com/284628487a/archive/2016/03/14/5274767.html)
+[M23Permission]:(https://www.cnblogs.com/whoislcj/p/6090795.html)
+[M23Permission]:(https://www.jianshu.com/p/616410edd592)
+[M23Permission]:(https://www.jianshu.com/p/b431975d1a97)
+[M23Permission]:(https://blog.csdn.net/lmj623565791/article/details/50709663)

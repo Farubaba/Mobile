@@ -224,39 +224,6 @@ public final class FormatUtil {
         return format.format(new Date(milliseconds));
     }
 
-    /**
-     * 超过一天显示 ＊月＊日
-     * 当天显示13:30
-     *
-     * @param millisecondes
-     * @return
-     */
-    public static String formaToMonthDayOrToday(long millisecondes) {
-        Calendar calendarOpen = Calendar.getInstance();
-        calendarOpen.setTimeInMillis(millisecondes);
-        int month = calendarOpen.get(Calendar.MONTH) + 1;
-        int day = calendarOpen.get(Calendar.DAY_OF_MONTH);
-
-        int hour = calendarOpen.get(Calendar.HOUR_OF_DAY);
-        int minute = calendarOpen.get(Calendar.MINUTE);
-
-        if (sameDay(calendarOpen, Calendar.getInstance())) {
-            String hourStr = hour + "";
-            if (hour < 10) {
-                hourStr = "0" + hourStr;
-            }
-
-            if (minute < 10) {
-                return hourStr + ":" + "0" + minute;
-            } else {
-                return hourStr + ":" + minute;
-            }
-        } else {
-            return month + "月" + day + "日";
-        }
-
-    }
-
     private static boolean sameDay(Calendar cal1, Calendar cal2) {
         int year1 = cal1.get(Calendar.YEAR);
         int month1 = cal1.get(Calendar.MONTH) + 1;
@@ -323,63 +290,6 @@ public final class FormatUtil {
         return format.format(date);
     }
 
-    public static String formatHourOfOut(long milliseconds, int timeOut) {
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        try {
-            Date d1 = new Date();
-
-            Date d2 = new Date(milliseconds);
-            long diff = d1.getTime() - d2.getTime();
-            long time = timeOut - diff / 1000 / 60 / 60;
-            // long time=timeOut*1000*60*60-diff;
-            long year = time / 24 / 30 / 365;
-            long mounth = (time - year * 24 * 30 * 365) / 24 / 30;
-            long days = (time - year * 24 * 30 * 365) / 24;
-            long hours = (time - (days * 24));
-            long minutes = (time * 60 - (hours * 60));
-            if (year > 0) {
-                if (mounth >= 6) {
-                    year = year + 1;
-                }
-                return year + "年";
-            } else {
-                //				if (mounth > 0) {
-                //					if (days >= 15) {
-                //						mounth = mounth + 1;
-                //					}
-                //					return mounth + "个月";
-                //				} else {
-                if (days > 0) {
-                    // if (hours >= 12) {
-                    // days = days + 1;
-                    // }
-                    return days + "天";
-                } else {
-                    if (hours > 0) {
-                        // if (minutes >= 30) {
-                        // hours = hours + 1;
-                        // }
-                        if (hours > 1) {
-                            return (hours - 1) + "小时";
-
-                        }
-                        return hours + "小时";
-                    } else {
-
-                        if (minutes > 0) {
-                            return 1 + "小时";
-                        }
-                    }
-                }
-
-                //}
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return 0 + "小时";
-    }
-
     public static String formatToDayOrHours(long intervalTime) {
 
         long day = intervalTime / (24 * 60 * 60 * 1000);
@@ -400,97 +310,6 @@ public final class FormatUtil {
 
     }
 
-    public static String formatToDayOrHoursFromHours(int hours) {
-        String result = "";
-        if (hours < 24) {
-            result = hours + "小时";
-        } else {
-            result = hours / 24 + "天";
-        }
-        return result;
-
-    }
-
-    static public String formatMillis(long val) {
-
-        if (val > 3600000 * 24) {
-            return String.format("%1$d天%2$d小时%3d分钟%4$d秒", (val / 3600000 / 24), (val % (3600000 * 24)) / 3600000, (val % 3600000) / 60000, (val % 60000) / 1000);
-        } else if (val <= 3600000 * 24 && val > 3600000) {
-            return String.format("%1$d小时%2d分钟%3$d秒", val / 3600000, ((val % 3600000) / 60000), ((val % 60000) / 1000));
-        } else if (val <= 3600000 && val > 60000) {
-            return String.format("%1d分钟%2$d秒", val / 60000, ((val % 60000) / 1000));
-        } else if (val <= 60000) {
-            return String.format("%1$d秒", (val / 1000));
-        }
-        return "";
-    }
-
-    public static String formatTime(long ms) {
-
-        int ss = 1000;
-        int mi = ss * 60;
-        int hh = mi * 60;
-        int dd = hh * 24;
-
-        long day = ms / dd;
-        long hour = (ms - day * dd) / hh;
-        long minute = (ms - day * dd - hour * hh) / mi;
-        long second = (ms - day * dd - hour * hh - minute * mi) / ss;
-        long milliSecond = ms - day * dd - hour * hh - minute * mi - second * ss;
-
-        String strDay = day < 10 ? "0" + day : "" + day; // 天
-        if (strDay.startsWith("0")) {
-            strDay = strDay.substring(1, strDay.length());
-        }
-        String strHour = hour < 10 ? "0" + hour : "" + hour;// 小时
-        String strMinute = minute < 10 ? "0" + minute : "" + minute;// 分钟
-        String strSecond = second < 10 ? "0" + second : "" + second;// 秒
-        String strMilliSecond = milliSecond < 10 ? "0" + milliSecond : "" + milliSecond;// 毫秒
-        strMilliSecond = milliSecond < 100 ? "0" + strMilliSecond : "" + strMilliSecond;
-        if (day > 0) {
-            return strDay + "天" + strHour + "小时";
-        } else if (hour > 0) {
-            return strHour + "小时" + strMinute + "分钟";
-        } else if (minute > 0) {
-            return strMinute + "分钟" + strSecond + "秒";
-        } else if (second > 0) {
-            return strSecond + "秒";
-        } else {
-            return 0 + "秒";
-        }
-
-    }
-
-    public static String formatClockTime(long ms) {
-
-        int ss = 1000;
-        int mi = ss * 60;
-        int hh = mi * 60;
-        int dd = hh * 24;
-
-        long day = ms / dd;
-        long hour = (ms - day * dd) / hh;
-        long minute = (ms - day * dd - hour * hh) / mi;
-        long second = (ms - day * dd - hour * hh - minute * mi) / ss;
-        long milliSecond = ms - day * dd - hour * hh - minute * mi - second * ss;
-        if (day > 0) {
-            hour = hour + day * 24;
-        }
-
-        String strDay = day < 10 ? "0" + day : "" + day; // 天
-        if (strDay.startsWith("0")) {
-            strDay = strDay.substring(1, strDay.length());
-        }
-        String strHour = hour < 10 ? "0" + hour : "" + hour;// 小时
-        String strMinute = minute < 10 ? "0" + minute : "" + minute;// 分钟
-        String strSecond = second < 10 ? "0" + second : "" + second;// 秒
-        String strMilliSecond = milliSecond < 10 ? "0" + milliSecond : "" + milliSecond;// 毫秒
-        strMilliSecond = milliSecond < 100 ? "0" + strMilliSecond : "" + strMilliSecond;
-
-        return strHour + ":" + strMinute + ":" + strSecond;
-
-    }
-
     static public String formatMillis2(long val) {
 
         if (val > 3600000 * 24) {
@@ -503,43 +322,6 @@ public final class FormatUtil {
             return String.format("%1$2d秒", (val / 1000));
         }
         return "";
-    }
-
-    static public String formatMillis3(long val) {
-
-        if (val > 3600000 * 24) {
-            return String.format("%1$2d天%2$2d小时%3$2d分%4$2d秒", (val / 3600000 / 24), (val % (3600000 * 24)) / 3600000, (val % 3600000) / 60000, (val % 60000) / 1000);
-        } else if (val <= 3600000 * 24 && val > 3600000) {
-            return String.format("%1$2d小时%2$2d分%3$2d秒", val / 3600000, ((val % 3600000) / 60000), ((val % 60000) / 1000));
-        } else if (val <= 3600000 && val > 60000) {
-            return String.format("%1$2d分%2$2d秒", val / 60000, (val % 60000) / 1000);
-        } else if (val <= 60000) {
-            return String.format("%1$2d秒", (val / 1000));
-        }
-        return "";
-    }
-
-    static public String formatMillis4(long val) {
-
-        if (val > 3600000 * 24) {
-            return String.format("%1$2d天%2$2d小时", (val / 3600000 / 24), (val % (3600000 * 24)) / 3600000, (val % 3600000) / 60000, (val % 60000) / 1000);
-        } else if (val <= 3600000 * 24 && val > 3600000) {
-            return String.format("%1$2d小时%2$2d分钟", val / 3600000, ((val % 3600000) / 60000), ((val % 60000) / 1000));
-        } else if (val <= 3600000 && val > 60000) {
-            return String.format("%1$2d分钟", val / 60000, (val % 60000) / 1000);
-        } else if (val <= 60000) {
-            return String.format("%1$2d秒", (val / 1000));
-        }
-        return "";
-    }
-
-    static public String formatMillisToDays(long val) {
-
-        if (val > 3600000 * 24) {
-            return String.format("剩余%1$d天", (val / 3600000 / 24));
-        } else {
-            return "不到1天";
-        }
     }
 
     static public String getFormatCardNum(String str) {
@@ -559,259 +341,12 @@ public final class FormatUtil {
         return out;
     }
 
-    public static String getCurrencyCommontFormat(double value) {
-        String currency;
-
-        // 大于亿元
-        if (value >= 100000000) {
-            if ((value % 100000000) > 0) {
-                currency = String.format(DEFAULT_LOCALE, "%1$.2f亿", value / 100000000);
-            } else {
-                currency = String.format(DEFAULT_LOCALE, "%1$.0f亿", value / 100000000);
-            }
-        }
-        // 大于千万
-        else if (value >= 10000000) {
-            if ((value % 10000000) > 0) {
-                currency = String.format(DEFAULT_LOCALE, "%1$.2f万", value / 10000);
-            } else {
-                currency = String.format(DEFAULT_LOCALE, "%1$.0f万", value / 10000);
-            }
-        }
-        // 1万以上
-        else if (value >= 10000) {
-            if ((value % 10000) > 0) {
-                currency = String.format(DEFAULT_LOCALE, "%1$.2f万", value / 10000);
-                if (currency.contains(".00")) {
-                    currency = currency.substring(0, currency.length() - 4) + "万＋";
-                } else if (currency.endsWith("0万")) {
-                    currency = currency.substring(0, currency.length() - 2) + "万";
-                }
-            } else {
-                currency = String.format(DEFAULT_LOCALE, "%1$.0f万", value / 10000);
-            }
-        } else if (value >= 1000) {
-            currency = String.format(DEFAULT_LOCALE, "%1$.1f万", value / 10000);
-        }
-        // 1万以内
-        else {
-            currency = FormatUtil.getFormat2DecimalNoSeperator().format(value) + "元";
-            if (currency.endsWith(".00元")) {
-                currency = currency.replace(".00元", "元");
-            } else if (currency.endsWith(".0元")) {
-                currency = currency.replace(".0元", "元");
-            }
-        }
-
-        return currency;
-    }
-
-    public static String getCurrencyCommontFormatNew(double value) {
-        String currency;
-
-        // 大于亿元
-        if (value >= 100000000) {
-            if ((value % 100000000) > 0) {
-                currency = getCurrencyString(value / 100000000) + "亿";
-            } else {
-                currency = String.format(DEFAULT_LOCALE, "%1$.0f亿", value / 100000000);
-            }
-        }
-        // 大于千万
-        else if (value >= 10000000) {
-            if ((value % 10000000) > 0) {
-                currency = getCurrencyString(value / 10000) + "万";
-            } else {
-                currency = String.format(DEFAULT_LOCALE, "%1$.0f万", value / 10000);
-            }
-        }
-        // 1万以上
-        else if (value >= 10000) {
-            if ((value % 10000) > 0) {
-                currency = getCurrencyString(value / 10000) + "万";
-            } else {
-                currency = String.format(DEFAULT_LOCALE, "%1$.0f万", value / 10000);
-            }
-        }
-        // 1万以内
-        else {
-            currency = String.format(DEFAULT_LOCALE, "%1$.0f元", value);
-        }
-
-        return currency;
-    }
-
-    public static String getCurrencyString(double value) {
-        String currency = String.valueOf(value);
-        String cu, last = null;
-        if (currency.contains(".")) {
-            last = currency.subSequence(currency.indexOf("."), currency.length()).toString();
-        }
-        if (last != null) {
-            if (last.length() > 1 && last.length() > 2) {
-                cu = currency.subSequence(0, currency.indexOf(".") + 3).toString();
-            } else if (last.length() > 1 && last.length() == 2) {
-                if (last.equals(".0")) {
-                    cu = currency.subSequence(0, currency.indexOf(".")).toString();
-                } else {
-                    cu = currency.subSequence(0, currency.indexOf(".") + 2).toString();
-                }
-            } else {
-                cu = currency.subSequence(0, currency.indexOf(".")).toString();
-            }
-        } else {
-            cu = currency.subSequence(0, currency.indexOf(".")).toString();
-        }
-
-        return cu;
-    }
-
-    public static String getCurrencyProbablyFormat(double value) {
-        String currency;
-
-        // 大于亿元
-        if (value >= 100000000) {
-            if ((value % 100000000) > 0) {
-                currency = String.format(DEFAULT_LOCALE, "%1$.2f", value / 100000000);
-                currency = getCurreny(value / 100000000, currency);
-                currency = currency.substring(0, currency.indexOf(".")) + "亿+";
-            } else {
-                currency = String.format(DEFAULT_LOCALE, "%1$.0f亿", value / 100000000);
-            }
-        }
-        // 大于千万
-        else if (value >= 10000000) {
-            if ((value % 10000000) > 0) {
-                currency = String.format(DEFAULT_LOCALE, "%1$.2f", value / 10000);
-                currency = getCurreny(value / 10000, currency);
-                currency = currency.substring(0, currency.indexOf(".")) + "万+";
-            } else {
-                currency = String.format(DEFAULT_LOCALE, "%1$.0f万", value / 10000);
-            }
-        }
-        // 1万以上
-        else if (value >= 10000) {
-            if ((value % 10000) > 0) {
-                currency = String.format(DEFAULT_LOCALE, "%1$.2f", value / 10000);
-                currency = getCurreny(value / 10000, currency);
-                // if (currency.contains(".00")) {
-                // currency = currency.substring(0, currency.length())
-                // + "万";
-                // }
-                currency = currency.substring(0, currency.indexOf(".")) + "万+";
-            } else {
-                currency = String.format(DEFAULT_LOCALE, "%1$.0f万", value / 10000);
-            }
-        }
-        // 1万以内
-        else if (value < 10000 && value > 100) {
-            if (String.valueOf(value).contains(".00") || String.valueOf(value).contains(".0")) {
-                currency = String.format(DEFAULT_LOCALE, "%1$.0f元", value);
-            } else {
-                currency = String.format(DEFAULT_LOCALE, "%1$.1f元", value);
-            }
-        } else if (value < 10000 && value < 100) {
-            if (String.valueOf(value).contains(".00") || String.valueOf(value).contains(".0")) {
-                currency = String.format(DEFAULT_LOCALE, "%1$.0f元", value);
-            } else {
-                currency = String.format(DEFAULT_LOCALE, "%1$.2f元", value);
-            }
-        } else {
-            if (String.valueOf(value).contains(".00") || String.valueOf(value).contains(".0")) {
-                currency = String.format(DEFAULT_LOCALE, "%1$.0f元", value);
-            } else {
-                currency = String.format(DEFAULT_LOCALE, "%1$.2f元", value);
-            }
-        }
-
-        return currency;
-    }
-
-    public static String getCurrencyTransferFormat(double value) {
-        String currency;
-
-        // 大于亿元
-        if (value >= 100000000) {
-            if ((value % 100000000) > 0) {
-                currency = String.format(DEFAULT_LOCALE, "%1$.2f", value / 100000000);
-                currency = getCurreny(value / 100000000, currency);
-                currency = currency.substring(0, currency.indexOf(".")) + "亿+";
-            } else {
-                currency = String.format(DEFAULT_LOCALE, "%1$.0f亿", value / 100000000);
-            }
-        }
-        // 大于千万
-        else if (value >= 10000000) {
-            if ((value % 10000000) > 0) {
-                currency = String.format(DEFAULT_LOCALE, "%1$.2f", value / 10000);
-                currency = getCurreny(value / 10000, currency);
-                currency = currency.substring(0, currency.indexOf(".")) + "万+";
-            } else {
-                currency = String.format(DEFAULT_LOCALE, "%1$.0f万", value / 10000);
-            }
-        }
-        // 1万以上
-        else if (value >= 10000) {
-            if ((value % 10000) > 0) {
-                currency = String.format(DEFAULT_LOCALE, "%1$.2f", value / 10000);
-                currency = getCurreny(value / 10000, currency);
-                // if (currency.contains(".00")) {
-                // currency = currency.substring(0, currency.length())
-                // + "万";
-                // }
-                currency = currency.substring(0, currency.indexOf(".")) + "万+";
-            } else {
-                currency = String.format(DEFAULT_LOCALE, "%1$.0f万", value / 10000);
-            }
-        }
-        // 1万以内
-        else {
-            currency = FormatUtil.getFormat2DecimalNoSeperator().format(value) + "元";
-        }
-
-        return currency;
-    }
-
     public static String getCurreny(double value, String curreny) {
         double cu = Double.parseDouble(curreny);
         if (cu - value > 0) {
             curreny = String.valueOf(cu);
         }
         return curreny;
-    }
-
-    public static String getIntString(String data) {
-        String val;
-        double real = Double.parseDouble(data);
-        if (!data.equals("0.0") && data.contains(".")) {
-            Double temp = Double.parseDouble(data.substring(0, data.indexOf(".")).replace(".", ""));
-            if (real - temp >= 0.5) {
-                val = String.valueOf((int) (temp + 1));
-            } else {
-                val = String.valueOf((int) (temp + 0));
-            }
-
-        } else {
-            val = String.valueOf((int) real);
-        }
-        return val;
-    }
-
-    public static String getIntString2(String data) {
-        String val;
-        double real = Double.parseDouble(data);
-        if (!data.equals("0.0") && data.contains(".")) {
-            Double temp = Double.parseDouble(data.substring(0, data.indexOf(".")).replace(".", ""));
-            if (real - temp >= 0.5) {
-                val = String.valueOf((int) (temp + 1));
-            } else {
-                val = String.valueOf((int) (temp + 0));
-            }
-
-        } else {
-            val = String.valueOf((int) real);
-        }
-        return val;
     }
 
     public static String getMaskMobile(String mobile) {
@@ -1283,5 +818,66 @@ public final class FormatUtil {
             return "0";
         }
         return getFormatWithNoPoint().format(Math.ceil(top / bottom * 100));
+    }
+
+    /**
+     * 判断给定的字符串是否是数字
+     * @param str
+     * @return
+     */
+    public static boolean isNumber(String str) {
+        // return str.matches("^[-+]?(([0-9]+)([.]([0-9]+))?)$");
+        return str.matches("[\\d]+[.]?[\\d]+");
+    }
+
+    public static int judgeStringType(String input) {
+//        String chineseRegex = "^[\u4e00-\u9fa5]*$";
+//        String character = "^[A-Za-z]+$";
+//        String numberRegex = "^[0-9]+$";
+//        String numberAndChar = "[0-9]+[A-Za-z]+";
+//        String numberAndChineseRegex = "[0-9]+[\u4e00-\u9fa5]+";
+//        String charAndChineseRegex = "[A-Za-z]+[\u4e00-\u9fa5]+";
+//        String all = "[0-9]+[\u4e00-\u9fa5]+[A-Za-z]+";
+//        if (input.matches(chineseRegex)) {
+//            return CHINESE;
+//        } else if (input.matches(charAndChineseRegex)) {
+//            return NUMBER_CHARACTER;
+//        } else if (input.matches(character)) {
+//            return NUMBER_OR_CHARACTER;
+//        } else if (input.matches(numberRegex)) {
+//            return NUMBER_OR_CHARACTER;
+//        } else if (input.matches(numberAndChineseRegex)) {
+//            return NUMBER_CHARACTER;
+//        } else if (input.matches(all)) {
+//            return MIX;
+//        } else if (input.matches(numberAndChar)) {
+//            return NUMBER_OR_CHARACTER;
+//        } else
+//            return CHINESE;
+        return 0;
+    }
+
+    /**
+     * 转换文件大小
+     *
+     * @param size
+     *            单位为kb
+     * @return
+     */
+    public static String formatSize(float size) {
+        long kb = 1024;
+        if (size < kb) {
+            return String.format("%dB", (int) size);
+        }
+        long mb = kb * 1024;
+        if (size < mb) {
+            return String.format("%.1fK", size / kb); // 保留两位小数
+        }
+        long gb = mb * 1024;
+        if (size < gb) {
+            return String.format("%.1fM", size / mb);
+        } else {
+            return String.format("%.1fG", size / gb);
+        }
     }
 }

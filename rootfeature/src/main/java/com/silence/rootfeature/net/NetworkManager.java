@@ -1,5 +1,12 @@
 package com.silence.rootfeature.net;
 
+import android.app.ActivityOptions;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.support.v4.net.ConnectivityManagerCompat;
+
+import com.silence.rootfeature.utils.SystemServiceManager;
+
 /**
  * 网络请求管理类
  * @author violet
@@ -7,6 +14,7 @@ package com.silence.rootfeature.net;
  */
 
 public class NetworkManager {
+
     private static NetworkManager instance = new NetworkManager();
     private NetworkManager(){
 
@@ -15,4 +23,7 @@ public class NetworkManager {
         return instance;
     }
 
+    public boolean isActiveNetworkMetered(){
+        return SystemServiceManager.getConnectivityManager().isActiveNetworkMetered();
+    }
 }

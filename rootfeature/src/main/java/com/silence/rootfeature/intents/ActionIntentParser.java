@@ -3,9 +3,7 @@ package com.silence.rootfeature.intents;
 import android.content.Intent;
 import android.net.Uri;
 
-import com.silence.rootfeature.utils.CommonUtil;
-
-import java.util.List;
+import com.silence.rootfeature.utils.ConvenientUtil;
 
 /**
  * @author violet
@@ -36,7 +34,7 @@ public class ActionIntentParser {
      * @return
      */
     public boolean isEmpty(String uri){
-        if(CommonUtil.isEmpty(uri)){
+        if(ConvenientUtil.isEmpty(uri)){
             return true;
         }
         return false;
@@ -66,7 +64,7 @@ public class ActionIntentParser {
          * @return
          */
         public boolean isUrlIntent(){
-            if(CommonUtil.isEmpty(getUrl())){
+            if(ConvenientUtil.isEmpty(getUrl())){
                 return false;
             }
             return true;
@@ -78,7 +76,7 @@ public class ActionIntentParser {
 
         public ActionIntent setUrl(String url) {
             this.url = url;
-            if(!CommonUtil.isEmpty(url)){
+            if(!ConvenientUtil.isEmpty(url)){
                 Uri uri = Uri.parse(url);
                 String scheme = uri.getScheme();
                 String host = uri.getHost();

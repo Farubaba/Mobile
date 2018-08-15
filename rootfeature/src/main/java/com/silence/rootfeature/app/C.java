@@ -1,5 +1,7 @@
 package com.silence.rootfeature.app;
 
+import android.graphics.BitmapFactory;
+
 import java.nio.charset.Charset;
 import java.util.Locale;
 
@@ -134,6 +136,46 @@ public final class C {
         public static final int TEN_BILLION = BILLION * 10;
     }
 
+    /**
+     * java中的标准：
+     * 1.二进制位bit
+     * 2.字节byte
+     * 3.字节数组byte[]
+     * 4.一个字节 (byte[1])等于8bit
+     * 5.1024字节（byte[1024]）等于1KB
+     * 6.1024*1024字节 (byte[1024 * 1024])等于 1MB
+     *
+     *
+     * 所有数值对应适用于byte[] bytes = new byte[size]
+     * 中的size值。
+     *
+     * 通常使用字节流（inputStream和outputStream）来读写时，使用byte[]的buffer。字节流与字符编码无关。
+     * 通常使用字符流（reader和writer）来读写时，使用char[]的buffer。字符流和字符编码有关。
+     */
+    public static final class SizeUnits{
+
+        public static final int KB = 1024;
+        public static final int MB = 1024 * KB;
+        /**
+         * 借鉴自{@link BitmapFactory#DECODE_BUFFER_SIZE}, 这个私有常量中定义了16KB的缓冲区。
+         * 参考《Android移动性能测试》总结：小于8KB的缓冲区，读写图片，文件或将影响性能。
+         * 但是当API中获取返回的JSON字符串时，通常不需要缓冲区，一次全部读取到内存都没有问题，因为内容通常很小。
+         * 建议只有内容超过1MB时，才需要缓冲区。
+         */
+        public static final int DEFAULT_BUFFER_SIZE = 16 * KB;
+
+        /**
+         * 个人经验：如果在解析JSON文件时，需要使用到buffer，建议使用4 * KB 大小。
+         * 或者根据JSON文件内容长度，动态指定buffer大小
+         */
+        public static final int MIN_BUFFER_SIZE = 8 * KB;
+
+        /**
+         * 文件加载时使用的buffer大小
+         */
+        public static final int FILE_DOWNLOAD_BUFFER_SIZE = 64 * KB;
+    }
+
     public static final class DateTimes{
         /**
          * 默认Locale
@@ -187,5 +229,15 @@ public final class C {
     public static final class Symbols{
         public static final byte CR = (byte) '\r';
         public static final byte LF = (byte) '\n';
+    }
+
+    public static final class Regex{
+        public static final String chineseRegex = "^[\u4e00-\u9fa5]*$";
+        public static final String character = "^[A-Za-z]+$";
+        public static final String numberRegex = "^[0-9]+$";
+        public static final String numberAndChar = "[0-9]+[A-Za-z]+";
+        public static final String numberAndChineseRegex = "[0-9]+[\u4e00-\u9fa5]+";
+        public static final String charAndChineseRegex = "[A-Za-z]+[\u4e00-\u9fa5]+";
+        public static final String all = "[0-9]+[\u4e00-\u9fa5]+[A-Za-z]+";
     }
 }

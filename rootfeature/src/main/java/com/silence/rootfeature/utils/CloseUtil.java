@@ -4,6 +4,7 @@ import android.database.Cursor;
 
 import com.silence.rootfeature.logger.LogManager;
 
+import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -25,123 +26,40 @@ public final class CloseUtil {
 
 	private static final String TAG = "StreamUtil";
 
-	/**
-	 * close cursor.
-	 * 
-	 * @param cursor
-	 */
-	public static void closeCursor(Cursor cursor) {
-		if (cursor != null && !cursor.isClosed()) {
+	public static void closeIO(Closeable closeable){
+		if(closeable != null){
 			try {
-				cursor.close();
-			}
-			catch (Exception e) {
-				LogManager.getInstance().e(TAG, "cursor close exception : " + e.getMessage());
+				closeable.close();
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
 		}
 	}
 
-	/**
-	 * close inputStream.
-	 * 
-	 * @param inStream
-	 */
-	public static void closeStream(InputStream inStream) {
-		if (inStream != null) {
+	public static void closeIOQuietly(Closeable closeable){
+		if(closeable != null){
 			try {
-				inStream.close();
-			}
-			catch (Exception e) {
-				LogManager.getInstance().e(TAG, "inputStream close exception : " + e.getMessage());
+				closeable.close();
+			} catch (IOException e) {
+				//e.printStackTrace();
 			}
 		}
 	}
 
-	/**
-	 * close outputStream.
-	 * 
-	 * @param outStream
-	 */
-	public static void closeStream(OutputStream outStream) {
-		if (outStream != null) {
-			try {
-				outStream.close();
-			}
-			catch (Exception e) {
-				LogManager.getInstance().e(TAG, "outputStream close exception : " + e.getMessage());
-			}
+	public static void closeIO(final Closeable... closeables) {
+		if (closeables == null) return;
+		for (Closeable closeable : closeables) {
+			closeIO(closeable);
 		}
 	}
 
-	/**
-	 * close reader.
-	 * 
-	 * @param reader
-	 */
-	public static void closeStream(Reader reader) {
-		if (reader != null) {
-			try {
-				reader.close();
-			}
-			catch (IOException e) {
-				LogManager.getInstance().e(TAG, "reader close exception : " + e.getMessage());
-			}
+	public static void closeIOQuietly(final Closeable... closeables) {
+		if (closeables == null) return;
+		for (Closeable closeable : closeables) {
+			closeIOQuietly(closeable);
 		}
 	}
 
-	/**
-	 * close writer.
-	 * 
-	 * @param writer
-	 */
-	public static void closeStream(Writer writer) {
-		if (writer != null) {
-			try {
-				writer.close();
-			}
-			catch (IOException e) {
-				LogManager.getInstance().e(TAG, "writer close exception : " + e.getMessage());
-			}
-		}
-	}
-
-	/**
-	 * close randomAccessFile.
-	 * 
-	 * @param randomAccessFile
-	 */
-	public static void closeStream(RandomAccessFile randomAccessFile) {
-		if (randomAccessFile != null) {
-			try {
-				randomAccessFile.close();
-			}
-			catch (IOException e) {
-				LogManager.getInstance().e(TAG, "randomAccessFile close exception : " + e.getMessage());
-			}
-		}
-	}
-
-	public static void closeSocket(Socket socket) {
-		if (socket != null) {
-			try {
-				socket.close();
-			}
-			catch (Exception e) {
-				LogManager.getInstance().dt(TAG, "socket close exception : " + e.getMessage());
-			}
-		}
-	}
-
-	public static void closeSocket(ServerSocket serverSocket) {
-		if (serverSocket != null) {
-			try {
-				serverSocket.close();
-			}
-			catch (Exception e) {
-				LogManager.getInstance().dt(TAG, "serverSocket close exception : " + e.getMessage());
-			}
-		}
-	}
 
 	public static void closeHttpURLConnection(HttpURLConnection conn) {
 		if (conn != null) {

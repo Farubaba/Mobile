@@ -1,18 +1,29 @@
 package com.silence.mobile;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 
 import com.silence.mobile.intent_start.IntentMatchActivity2;
+import com.silence.mobile.trainning.MainActivity;
 import com.silence.rootfeature.app.AppUtil;
 import com.silence.rootfeature.app.C;
+import com.silence.rootfeature.app.PermissionUtil;
 import com.silence.rootfeature.base.BaseActivity;
+import com.silence.rootfeature.utils.StorageUtilTest;
+import com.silence.rootfeature.utils.ToastUtil;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.security.Permission;
 
 public class HomeActivity extends BaseActivity {
 
@@ -20,8 +31,23 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+
+        View container = LayoutInflater.from(this).inflate(R.layout.activity_home, null);
+        setContentView(container);
+        container.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN|View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+
+
         Button button = findViewById(R.id.btn_custom);
+        Button button1 = findViewById(R.id.btn_custom1);
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(v.getContext(),MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
         StringBuilder sb = new StringBuilder();
         sb.append(AppUtil.getPackageName()).append(C.Strings.NEW_LINE_SEPERATOR)
                 .append(AppUtil.getVersionCode()).append(C.Strings.NEW_LINE_SEPERATOR)
@@ -61,5 +87,48 @@ public class HomeActivity extends BaseActivity {
             index ++;
             }
         });
+
+
+//        StorageUtilTest.getInternalFilesDir();
+//        StorageUtilTest.getInternalCacheDir();
+//        StorageUtilTest.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS);
+//        StorageUtilTest.getExternalStoragePublicDir(Environment.DIRECTORY_PICTURES);
+        StorageUtilTest.testPath();
+
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+            ToastUtil.show("no permission to write external storage.");
+            if(ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE)){
+                //显示一个异步提示信息，告诉用户为什么需要这个权限
+            }else{
+                ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},101);
+            }
+
+        }
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode){
+            case 101:
+                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    ToastUtil.show("write external storage PERMISSION_GRANTED, do your work now.");
+                }else{
+                    ToastUtil.show("user cancel , PERMISSION_GRANTED failed.");
+                }
+                break;
+
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode){
+            case 101:
+                break;
+        }
     }
 }

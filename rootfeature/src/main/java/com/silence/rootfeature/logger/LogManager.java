@@ -13,6 +13,7 @@ import com.orhanobut.logger.Printer;
 import com.silence.rootfeature.BuildConfig;
 import com.silence.rootfeature.app.C;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -245,55 +246,80 @@ public class LogManager implements ILogPrinter {
 
     @Override
     public void dt(String TAG, String message, Object... args) {
-        t(TAG).d(getMessage(message), args);
-    }
-
-    @Override
-    public void dt(String TAG, Object object) {
-        if(object instanceof String){
-            t(TAG).d(getMessage((String)object));
-        }else{
-            t(TAG).d(object);
+        if(TAG != null && args != null){
+            t(TAG).d(getMessage(message), args);
         }
     }
 
     @Override
+    public void dt(String TAG, Object object) {
+        if(TAG != null && object != null){
+            if(object instanceof String){
+                t(TAG).d(getMessage((String)object));
+            }else{
+                t(TAG).d(object);
+            }
+        }
+    }
+
+    @Override
+    public void dt(String TAG, File file) {
+
+    }
+
+    @Override
     public void et(String TAG, String message, Object... args) {
-        t(TAG).e(getMessage(message), args);
+        if(TAG != null && args != null) {
+            t(TAG).e(getMessage(message), args);
+        }
     }
 
     @Override
     public void et(String TAG, Throwable throwable, String message, Object... args) {
-        t(TAG).e(throwable, getMessage(message), args);
+        if(TAG != null && message != null && args != null){
+            t(TAG).e(throwable, getMessage(message), args);
+        }
     }
 
     @Override
     public void wt(String TAG, String message, Object... args) {
-        t(TAG).w(getMessage(message), args);
+        if(TAG != null && message !=null && args != null) {
+            t(TAG).w(getMessage(message), args);
+        }
     }
 
     @Override
     public void it(String TAG, String message, Object... args) {
-        t(TAG).i(getMessage(message), args);
+        if(TAG != null && message !=null && args != null) {
+            t(TAG).i(getMessage(message), args);
+        }
     }
 
     @Override
     public void vt(String TAG, String message, Object... args) {
-        t(TAG).v(getMessage(message), args);
+        if(TAG != null && message !=null && args != null) {
+            t(TAG).v(getMessage(message), args);
+        }
     }
 
     @Override
     public void wtft(String TAG, String message, Object... args) {
-        t(TAG).wtf(getMessage(message), args);
+        if(TAG != null && message !=null && args != null) {
+            t(TAG).wtf(getMessage(message), args);
+        }
     }
 
     @Override
     public void jsont(String TAG, String json) {
-        t(TAG).json(json);
+        if(TAG !=null && json != null) {
+            t(TAG).json(json);
+        }
     }
 
     @Override
     public void xmlt(String TAG, String xml) {
-        t(TAG).xml(xml);
+        if(TAG !=null && xml != null) {
+            t(TAG).xml(xml);
+        }
     }
 }

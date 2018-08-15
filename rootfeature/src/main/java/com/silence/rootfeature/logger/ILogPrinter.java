@@ -2,6 +2,8 @@ package com.silence.rootfeature.logger;
 
 import com.orhanobut.logger.Printer;
 
+import java.io.File;
+
 /**
  * @author violet
  * @date 2018/3/10 18:31
@@ -12,6 +14,8 @@ public interface ILogPrinter extends Printer {
     void dt(String TAG, String message, Object... args);
 
     void dt(String TAG, Object object);
+
+    void dt(String TAG, File file);
 
     void et(String TAG, String message, Object... args);
 

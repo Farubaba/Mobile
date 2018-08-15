@@ -31,6 +31,7 @@ import javax.crypto.NoSuchPaddingException;
  * 
  */
 final class RSACoder {
+
 	public static final String TAG = RSACoder.class.getSimpleName();
 	// 非对称加密密钥算法
 	public static final String KEY_ALGORITMA = "RSA";
