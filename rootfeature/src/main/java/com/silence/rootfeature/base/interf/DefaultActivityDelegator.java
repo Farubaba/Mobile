@@ -4,7 +4,7 @@ import android.app.Activity;
 
 /**
  * @author violet
- * @date 2018/4/29 15:54
+ * date :  2018/4/29 15:54
  */
 
 public class DefaultActivityDelegator extends AbsActivityDelegator {

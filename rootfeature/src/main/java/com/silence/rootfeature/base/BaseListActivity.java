@@ -13,7 +13,7 @@ import com.silence.rootfeature.utils.DebugUtil;
 
 /**
  * @author violet
- * @date 2018/4/29 15:21
+ * date :  2018/4/29 15:21
  */
 
 public class BaseListActivity extends ListActivity{

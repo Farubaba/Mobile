@@ -5,7 +5,7 @@ extern "C"
 JNIEXPORT jstring
 
 JNICALL
-Java_com_silence_mobile_trainning_MainActivity_stringFromJNITest(
+Java_com_silence_mobile_trainning_KotlinCActivity_stringFromJNITest(
         JNIEnv *env,
         jobject /* this */) {
     std::string hello = "Hello from C++ native-lib-test";

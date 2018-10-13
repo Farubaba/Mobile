@@ -7,7 +7,7 @@ import com.silence.rootfeature.utils.ConvenientUtil;
 
 /**
  * @author violet
- * @date 2018/4/25 17:47
+ * date :  2018/4/25 17:47
  */
 
 public class ActionIntentParser {

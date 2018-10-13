@@ -13,7 +13,7 @@ import com.silence.uikitfeature.R;
 
 /**
  * @author violet
- * @date 2018/4/30 18:47
+ * date :  2018/4/30 18:47
  */
 
 public class LinearProgressBar extends ProgressBar {

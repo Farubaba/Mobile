@@ -20,7 +20,7 @@ import com.silence.uikitfeature.base.PaintFactory;
 
 /**
  * @author violet
- * @date 2018/3/23 10:25
+ * date :  2018/3/23 10:25
  */
 
 public class OverviewSample extends BaseView {

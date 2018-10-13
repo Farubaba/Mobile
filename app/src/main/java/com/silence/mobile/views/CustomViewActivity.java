@@ -20,7 +20,7 @@ import java.util.List;
 
 /**
  * @author violet
- * @date 2018/3/23 12:03
+ * date :  2018/3/23 12:03
  */
 
 public class CustomViewActivity extends BaseActivity {

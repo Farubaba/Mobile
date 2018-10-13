@@ -6,7 +6,7 @@ import java.io.File;
 
 /**
  * @author violet
- * @date 2018/3/10 18:31
+ * date :  2018/3/10 18:31
  */
 
 public interface ILogPrinter extends Printer {

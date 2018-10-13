@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.silence.mobile.trainning.MainActivity">
+    tools:context="com.silence.mobile.trainning.KotlinCActivity">
 
     <TextView
         android:id="@+id/sample_text"

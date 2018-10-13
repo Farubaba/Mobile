@@ -10,7 +10,7 @@ import java.util.List;
  * 4.判断是否还有更多数据
  * 5.请求下一页数据
  * @author violet
- * @date 2018/4/29 17:43
+ * date :  2018/4/29 17:43
  */
 
 public interface Paging<PARAM, RESULT, CALLBACK> {

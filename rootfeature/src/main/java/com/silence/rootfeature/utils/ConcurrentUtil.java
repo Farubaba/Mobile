@@ -4,7 +4,7 @@ import java.util.concurrent.CountDownLatch;
 
 /**
  * @author violet
- * @date 2018/3/5 09:55
+ * date :  2018/3/5 09:55
  */
 public final class ConcurrentUtil {
 

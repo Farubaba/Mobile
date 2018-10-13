@@ -10,7 +10,7 @@ import com.silence.rootfeature.utils.SystemServiceManager;
 /**
  * 网络请求管理类
  * @author violet
- * @date 2018/3/11 12:15
+ * date :  2018/3/11 12:15
  */
 
 public class NetworkManager {

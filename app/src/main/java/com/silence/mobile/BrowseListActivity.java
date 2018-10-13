@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  * @author violet
- * @date 2018/4/29 15:43
+ * date :  2018/4/29 15:43
  */
 
 public class BrowseListActivity extends BaseListActivity {

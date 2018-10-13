@@ -5,7 +5,7 @@ import android.content.Intent;
 
 /**
  * @author violet
- * @date 2018/4/28 14:13
+ * date :  2018/4/28 14:13
  */
 
 public interface ActivityPressenter {

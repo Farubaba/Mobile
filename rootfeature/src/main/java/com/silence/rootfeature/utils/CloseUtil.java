@@ -26,6 +26,11 @@ public final class CloseUtil {
 
 	private static final String TAG = "StreamUtil";
 
+	public static void testrootfeature(){
+		boolean isAbsPath = com.farubaba.root.utils.UrlUtil.isAbsolutedPath("http://www.baidu.com");
+		System.out.print(isAbsPath);
+	}
+
 	public static void closeIO(Closeable closeable){
 		if(closeable != null){
 			try {

@@ -13,8 +13,8 @@ import android.widget.TextView;
 /**
  * @author gaoge
  * @version V1.0
- * @date 2016-05-10 15:38
- * @tips 给通用Adapter使用的viewHolder
+ * date :  2016-05-10 15:38
+ * tips 给通用Adapter使用的viewHolder
  */
 public class CommonViewHolder {
 

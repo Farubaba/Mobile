@@ -37,7 +37,7 @@ import com.silence.rootfeature.logger.LogManager;
  *  {@link android.graphics.Matrix}  {@link android.graphics.Paint} {@link android.graphics.Bitmap} {@link android.graphics.Canvas.VertexMode}
  *  {@link android.graphics.Picture} {@link android.graphics.Canvas.EdgeType} {@link android.graphics.DrawFilter}
  * @author violet
- * @date 2018/3/23 10:28
+ * date :  2018/3/23 10:28
  */
 
 public class BaseView extends View{

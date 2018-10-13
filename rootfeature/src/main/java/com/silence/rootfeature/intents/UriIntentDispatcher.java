@@ -8,7 +8,7 @@ import java.lang.annotation.RetentionPolicy;
 
 /**
  * @author violet
- * @date 2018/4/25 16:06
+ * date :  2018/4/25 16:06
  */
 
 public class UriIntentDispatcher {

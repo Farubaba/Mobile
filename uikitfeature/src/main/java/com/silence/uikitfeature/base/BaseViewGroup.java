@@ -31,7 +31,7 @@ import com.silence.rootfeature.logger.LogManager;
                     onWindowVisibilityChanged(int)	            Called when the visibility of the window containing the view has changed.
 
  * @author violet
- * @date 2018/3/25 11:53
+ * date :  2018/3/25 11:53
  */
 
 public class BaseViewGroup extends ViewGroup {

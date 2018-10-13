@@ -40,7 +40,7 @@ import java.util.Set;
  * 管理各种工具类，并提供对工具类集合的批量操作
  *
  * @author violet
- * @date 2018/3/5 13:12
+ * date :  2018/3/5 13:12
  */
 
 public final class AppUtil {

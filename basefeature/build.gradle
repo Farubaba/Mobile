@@ -1,12 +1,31 @@
 apply plugin: 'com.android.library'
 
+buildscript{
+    repositories {
+        google()
+        jcenter()
+        maven {
+            url  "https://dl.bintray.com/farubaba/android"
+        }
+    }
+}
+
+repositories{
+    flatDir {
+        dirs 'libs'
+    }
+    maven {
+        url  "https://dl.bintray.com/farubaba/android"
+    }
+}
+
 android {
     compileSdkVersion 27
 
 
 
     defaultConfig {
-        minSdkVersion 17
+        minSdkVersion 18
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -35,6 +54,11 @@ dependencies {
     /**
      * 依赖基础feature库
      */
-    api project(':rootfeature')
-    api project(':uikitfeature')
+//    api project(':rootfeature')
+//    api project(':uikitfeature')
+    implementation 'com.farubaba.android:rootfeature:0.0.1@aar'
+    implementation 'com.farubaba.android:uikitfeature:0.0.1@aar'
 }
+
+//apply from: 'install.gradle'
+apply from: 'publish.gradle'

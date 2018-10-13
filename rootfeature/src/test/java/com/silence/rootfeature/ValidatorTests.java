@@ -15,7 +15,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import static org.junit.Assert.*;
 /**
  * @author violet
- * @date 2018/3/11 15:41
+ * date :  2018/3/11 15:41
  */
 
 @RunWith(MockitoJUnitRunner.class)
@@ -40,6 +40,5 @@ public class ValidatorTests {
 
     @Test
     public void testValidatorUtil(){
-        assertTrue(textUtils.isEmpty(""));
     }
 }

@@ -9,7 +9,7 @@ import com.silence.rootfeature.logger.LogManager;
  * View相关工具类，提供便捷，统一的操作
  *
  * @author violet
- * @date 2018/3/25 11:15
+ * date :  2018/3/25 11:15
  */
 
 public final class ViewUtil {

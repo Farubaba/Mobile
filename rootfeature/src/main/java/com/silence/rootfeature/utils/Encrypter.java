@@ -34,7 +34,7 @@ import java.util.Base64;
  *  ------------------------------------------------------------------
  *  </pre>
  * @author violet
- * @date 2018/7/1 22:25
+ * date :  2018/7/1 22:25
  */
 
 public class Encrypter {

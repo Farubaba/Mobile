@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".trainning.MainActivity"
+        <activity android:name=".trainning.KotlinCActivity"
                   android:label="trainning/MainActivity">
         </activity>
 

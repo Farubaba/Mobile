@@ -16,7 +16,7 @@ import static org.junit.Assert.assertTrue;
 
 /**
  * @author violet
- * @date 2018/3/11 14:14
+ * date :  2018/3/11 14:14
  */
 @RunWith(AndroidJUnit4.class)
 public class LogManagerInstrumentedTest {

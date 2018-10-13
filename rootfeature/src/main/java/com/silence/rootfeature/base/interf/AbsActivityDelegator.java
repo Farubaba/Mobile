@@ -8,7 +8,7 @@ import com.silence.rootfeature.logger.LogManager;
 
 /**
  * @author violet
- * @date 2018/4/29 15:45
+ * date :  2018/4/29 15:45
  */
 
 public abstract class AbsActivityDelegator implements ActivityDelegator {

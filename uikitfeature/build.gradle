@@ -1,12 +1,21 @@
 apply plugin: 'com.android.library'
 
+buildscript{
+    repositories{
+        google()
+        jcenter()
+        maven{
+            url  "https://dl.bintray.com/farubaba/android"
+        }
+    }
+}
 android {
     compileSdkVersion 27
 
 
 
     defaultConfig {
-        minSdkVersion 17
+        minSdkVersion 18
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -35,5 +44,11 @@ dependencies {
     /**
      * rootfeature[通用基础功能]--->uikitfeature[模块领域可复用功能]--->basefeature[业务领域功能]--->app
      */
-    api project(':rootfeature')
+//    api project(':rootfeature')
+    api ('com.farubaba.android:rootfeature:0.0.1@aar'){
+        transitive = true
+    }
 }
+
+//apply from: 'install.gradle'
+apply from: 'publish.gradle'

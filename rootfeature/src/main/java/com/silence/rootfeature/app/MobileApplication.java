@@ -2,9 +2,11 @@ package com.silence.rootfeature.app;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 import android.os.Bundle;
 
 import com.silence.rootfeature.logger.LogManager;
+import com.silence.rootfeature.utils.ToastUtil;
 
 /**
  * 自定义Application类，处理以下任务：<br>
@@ -15,11 +17,13 @@ import com.silence.rootfeature.logger.LogManager;
  *         4、
  *     </code>
  * @author violet
- * @date 2018/3/5 10:13
+ * date :  2018/3/5 10:13
  */
 
 public class MobileApplication extends Application {
     public static final String TAG = MobileApplication.class.getSimpleName();
+
+    private MultiProcessManager.MultiProcessService multiProcessService;
 
     private ActivityLifecycleCallbacks mCallbacks = new ActivityLifecycleCallbacks() {
 
@@ -59,10 +63,18 @@ public class MobileApplication extends Application {
         }
     };
 
+    public MultiProcessManager.MultiProcessService getMultiProcessService() {
+        return multiProcessService == null ? multiProcessService = new BaseMultiProcessService() : multiProcessService;
+    }
+
+    public void setMultiProcessService(MultiProcessManager.MultiProcessService multiProcessService) {
+        this.multiProcessService = multiProcessService;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
-        MultiProcessInitializer.initProcesses(this);
+        MultiProcessManager.initProcesses(this, getMultiProcessService());
         registerActivityLifecycleCallbacks(mCallbacks);
     }
 

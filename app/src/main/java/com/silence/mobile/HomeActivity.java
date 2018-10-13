@@ -13,17 +13,15 @@ import android.view.View;
 import android.widget.Button;
 
 import com.silence.mobile.intent_start.IntentMatchActivity2;
-import com.silence.mobile.trainning.MainActivity;
+import com.silence.mobile.trainning.KotlinCActivity;
 import com.silence.rootfeature.app.AppUtil;
 import com.silence.rootfeature.app.C;
-import com.silence.rootfeature.app.PermissionUtil;
 import com.silence.rootfeature.base.BaseActivity;
 import com.silence.rootfeature.utils.StorageUtilTest;
 import com.silence.rootfeature.utils.ToastUtil;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.security.Permission;
 
 public class HomeActivity extends BaseActivity {
 
@@ -31,6 +29,8 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
 
         View container = LayoutInflater.from(this).inflate(R.layout.activity_home, null);
         setContentView(container);
@@ -43,7 +43,7 @@ public class HomeActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(v.getContext(),MainActivity.class);
+                intent.setClass(v.getContext(), KotlinCActivity.class);
                 startActivity(intent);
             }
         });

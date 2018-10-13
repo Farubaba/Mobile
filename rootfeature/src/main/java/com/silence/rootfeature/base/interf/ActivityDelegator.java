@@ -5,7 +5,7 @@ import android.content.Intent;
 
 /**
  * @author violet
- * @date 2018/4/29 15:24
+ * date :  2018/4/29 15:24
  */
 
 public interface ActivityDelegator {

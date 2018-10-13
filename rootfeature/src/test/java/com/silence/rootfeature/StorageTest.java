@@ -8,7 +8,7 @@ import org.junit.Test;
 
 /**
  * @author violet
- * @date 2018/6/29 18:03
+ * date :  2018/6/29 18:03
  */
 
 public class StorageTest {
@@ -24,6 +24,8 @@ public class StorageTest {
     @Test
     public void testmath(){
         double d = 2225234/23425234234L;
+
+        String name = "zhangsanfeng";
 
     }
 }

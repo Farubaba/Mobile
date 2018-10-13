@@ -9,7 +9,7 @@ import android.support.v4.app.ActivityCompat;
  * 整理收集那些有关于android版本适配的解决方案。
  *
  * @author violet
- * @date 2018/3/26 14:16
+ * date :  2018/3/26 14:16
  */
 
 public final class CompatUtil {

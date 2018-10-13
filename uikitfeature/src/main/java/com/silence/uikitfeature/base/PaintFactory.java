@@ -16,7 +16,7 @@ import android.graphics.Paint;
  *
  *
  * @author violet
- * @date 2018/3/23 10:45
+ * date :  2018/3/23 10:45
  */
 
 public class PaintFactory {

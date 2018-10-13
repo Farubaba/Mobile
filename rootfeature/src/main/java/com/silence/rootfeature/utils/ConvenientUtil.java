@@ -4,7 +4,7 @@ import android.text.TextUtils;
 
 /**
  * @author violet
- * @date 2018/4/25 18:13
+ * date :  2018/4/25 18:13
  */
 
 public class ConvenientUtil {

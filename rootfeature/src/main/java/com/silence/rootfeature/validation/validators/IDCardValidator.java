@@ -10,8 +10,8 @@ import com.silence.rootfeature.validation.ValidateUtil;
  *
  * @author chenpu
  * @version V1.0
- * @date 2016-03-07 16:14
- * @tips 在此提出您对代码的建议
+ * date :  2016-03-07 16:14
+ * tips 在此提出您对代码的建议
  */
 public class IDCardValidator extends BaseValidator<String> {
     /**

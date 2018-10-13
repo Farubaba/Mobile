@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * @author violet
- * @date 2018/4/29 17:53
+ * date :  2018/4/29 17:53
  */
 
 public class DefaultPaging<PARAM, RESULT, CALLBACK> implements Paging<PARAM, RESULT, CALLBACK> {

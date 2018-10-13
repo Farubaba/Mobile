@@ -3,8 +3,8 @@ package com.silence.rootfeature.paging_old;
 /**
  * @author violet
  * @version V1.0
- * @date 2016-05-24 10:50
- * @tips
+ * date :  2016-05-24 10:50
+ * tips
  */
 public interface Pagination extends PageLoadCallback {
     /**

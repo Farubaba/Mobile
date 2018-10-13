@@ -6,6 +6,7 @@ package com.silence.rootfeature.aop;
 public class BeforeAfterAdvice implements Advice{
     @Override
     public void beforeAdvice() {
+
     }
 
     @Override

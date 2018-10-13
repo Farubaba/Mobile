@@ -11,7 +11,7 @@ import com.silence.rootfeature.logger.LogManager;
 
 /**
  * @author violet
- * @date 2018/7/5 11:34
+ * date :  2018/7/5 11:34
  */
 
 public class NetworkUtil {

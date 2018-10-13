@@ -20,7 +20,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author violet
- * @date 2018/7/1 12:58
+ * date :  2018/7/1 12:58
  */
 
 public class IOUtil {
@@ -155,7 +155,7 @@ public class IOUtil {
      *
      * @return <b>boolean</b>
      * @author liangzhenggen@youku.com
-     * @date 2014年6月19日 下午5:03:26
+     * date :  2014年6月19日 下午5:03:26
      * @modify
      * @see
      */
@@ -291,7 +291,7 @@ public class IOUtil {
      *
      * @return <b>boolean</b>
      * @author liangzhenggen@youku.com
-     * @date 2014年6月6日 下午2:22:39
+     * date :  2014年6月6日 下午2:22:39
      * @modify
      * @see
      */
@@ -308,7 +308,7 @@ public class IOUtil {
      *
      * @return <b>long</b> MB
      * @author liangzhenggen@youku.com
-     * @date 2014年6月6日 下午2:26:24
+     * date :  2014年6月6日 下午2:26:24
      * @modify
      * @see
      */
@@ -332,7 +332,7 @@ public class IOUtil {
      *
      * @return <b>long</b> MB
      * @author liangzhenggen@youku.com
-     * @date 2014年6月6日 下午2:25:19
+     * date :  2014年6月6日 下午2:25:19
      * @modify
      * @see
      */

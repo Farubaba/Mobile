@@ -2,7 +2,7 @@ package com.silence.rootfeature.app;
 
 /**
  * @author violet
- * @date 2018/3/5 20:27
+ * date :  2018/3/5 20:27
  */
 
 public class PermissionUtil {

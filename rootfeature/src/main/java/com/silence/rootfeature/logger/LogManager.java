@@ -44,7 +44,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 实现ILogPrinter只是为了生成对应的接口方法，
  *
  * @author violet
- * @date 2018/3/5 09:55
+ * date :  2018/3/5 09:55
  */
 public class LogManager implements ILogPrinter {
 

@@ -13,7 +13,7 @@ import com.silence.rootfeature.utils.DebugUtil;
 
 /**
  * @author violet
- * @date 2018/3/23 11:59
+ * date :  2018/3/23 11:59
  */
 
 public class BaseActivity extends AppCompatActivity implements ActivityPressenter{
